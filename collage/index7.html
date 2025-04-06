@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline vs Block-Level Elements</title>
+    <style>
+        /* Styling for visualization */
+        .block-container {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .inline-element {
+            color: blue;
+            font-weight: bold;
+        }
+        .block-example {
+            background-color: lightblue;
+            padding: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Understanding Inline vs Block-Level Elements</h1>
+
+    <!-- Block-level element <div> containing multiple inline elements -->
+    <div class="block-container">
+        This is a <span class="inline-element">span (inline)</span>,  
+        a <strong>strong (inline)</strong> text,  
+        and a <a href="#">link (inline)</a> inside a <div> (block-level).
+    </div>
+
+    <!-- Explanation -->
+    <!-- 
+        The <div> is a block-level element, meaning it takes up the full width of its parent by default. 
+        Inside it, we placed <span>, <strong>, and <a> elements, which are inline elements. 
+        Inline elements do not start on a new line and only take up as much width as necessary.
+    -->
+
+    <!-- Mixing inline and block-level elements -->
+    <p>
+        This paragraph contains an <a href="#">inline link</a> and a <span class="inline-element">styled span</span>.  
+        But if we try to insert a <div> inside this paragraph, like below:
+    </p>
+
+    <p>
+        Here is an inline <span class="inline-element">span</span>,  
+        but below is a block element:
+    </p>
+
+    <div class="block-example">
+        I am a <div> block-level element inside a paragraph.
+    </div>
+
+    <!-- Explanation -->
+    <!-- 
+        Normally, block-level elements like <div> should not be placed inside inline elements like <p>.
+        If you try to do so, the browser will automatically break the flow and treat the <div> separately.
+        Unlike inline elements, block elements start on a new line and take up the full width.
+    -->
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Attributes and Content Grouping</title>
+    <style>
+        /* Basic styling for better readability */
+        section {
+            border: 2px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        article {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-top: 10px;
+            border-left: 5px solid #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Using Custom Attributes and Content Grouping</h1>
+
+    <!-- A div with a custom data attribute -->
+    <div id="infoBox" data-info="This is dynamically updated content!">
+        <p id="dynamicText">Click the button to update this text using the custom attribute.</p>
+        <button onclick="updateText()">Update Content</button>
+    </div>
+
+    <!-- Explanation of the data attribute -->
+    <!-- 
+        The <div> has a custom data attribute (data-info) that stores additional information. 
+        JavaScript will use this attribute to update the paragraph text dynamically.
+    -->
+
+    <!-- Grouping related content using <section> and <article> -->
+    <section>
+        <h2>Web Development Topics</h2>
+
+        <article>
+            <h3>HTML Basics</h3>
+            <p>HTML stands for HyperText Markup Language and is used to structure web content.</p>
+        </article>
+
+        <article>
+            <h3>CSS Styling</h3>
+            <p>CSS (Cascading Style Sheets) is used to style and design web pages.</p>
+        </article>
+
+        <article>
+            <h3>JavaScript Interaction</h3>
+            <p>JavaScript adds interactivity and dynamic behavior to websites.</p>
+        </article>
+    </section>
+
+    <!-- Explanation of the structure -->
+    <!-- 
+        The <section> groups related content under "Web Development Topics".
+        Each <article> represents a different topic with a heading and a paragraph.
+        This structure improves readability, organization, and SEO.
+    -->
+
+    <script>
+        function updateText() {
+            // Get the div element with the custom data attribute
+            let infoBox = document.getElementById("infoBox");
+
+            // Retrieve the custom data attribute value
+            let newText = infoBox.getAttribute("data-info");
+
+            // Update the paragraph content
+            document.getElementById("dynamicText").innerText = newText;
+        }
+    </script>
+
+</body>
+</html>

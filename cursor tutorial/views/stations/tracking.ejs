@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="/">Railway Tracker</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link <%= activeTab === 'home' ? 'active' : '' %>" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= activeTab === 'stations' ? 'active' : '' %>" href="/stations">Stations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= activeTab === 'journey' ? 'active' : '' %>" href="/stations/journey">Journey Tracker</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= activeTab === 'about' ? 'active' : '' %>" href="/about">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container my-4">
+    <h1 class="mb-4">Tracking Your Journey</h1>
+
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="alert alert-info" id="journeyInfo">
+          <h4 class="alert-heading">Journey Details</h4>
+          <p><strong>From:</strong> <%= currentStation.name %> (<%= currentStation.code %>)</p>
+          <p><strong>To:</strong> <%= destinationStation.name %> (<%= destinationStation.code %>)</p>
+          <p><strong>Started:</strong> <%= new Date(journey.started).toLocaleTimeString() %></p>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Current Status</h5>
+          </div>
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <h4 id="currentStationName"><%= currentStation.name %></h4>
+                <p class="text-muted">You are currently at this station</p>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex justify-content-between align-items-center">
+                  <% if (currentStation.next) { %>
+                    <% const nextStation = stations.find(s => s.id === currentStation.next); %>
+                    <div>
+                      <h5 id="nextStationName">Next: <%= nextStation.name %></h5>
+                      <p class="text-muted small">Code: <%= nextStation.code %></p>
+                    </div>
+                    <button 
+                      class="btn btn-primary update-station-btn" 
+                      data-station-id="<%= nextStation.id %>"
+                    >
+                      Update to Next
+                    </button>
+                  <% } else { %>
+                    <div>
+                      <h5>Terminal Station</h5>
+                      <p class="text-muted small">This is the last station</p>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-warning <%= currentStation.id === destinationStation.id ? 'd-block' : 'd-none' %>" id="destinationAlert">
+          <h4 class="alert-heading">🎉 You've Reached Your Destination!</h4>
+          <p>You have successfully arrived at <%= destinationStation.name %>.</p>
+          <hr>
+          <form action="/stations/end-journey" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-warning">End Journey</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Manual Update</h5>
+          </div>
+          <div class="card-body">
+            <p>If you've passed a station, update your current location:</p>
+            <div class="row">
+              <div class="col-sm-8">
+                <select class="form-select" id="manualStationSelect">
+                  <option value="" selected disabled>Select your current station</option>
+                  <% stations.forEach(station => { %>
+                    <option 
+                      value="<%= station.id %>" 
+                      <%= station.id === currentStation.id ? 'selected' : '' %>
+                    >
+                      <%= station.name %> (<%= station.code %>)
+                    </option>
+                  <% }) %>
+                </select>
+              </div>
+              <div class="col-sm-4">
+                <button id="manualUpdateBtn" class="btn btn-secondary w-100">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <form action="/stations/end-journey" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Cancel Journey</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-light py-3 mt-5">
+    <div class="container text-center">
+      <p class="mb-0">&copy; <%= new Date().getFullYear() %> Railway Tracker. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update station functionality
+      const updateButtons = document.querySelectorAll('.update-station-btn');
+      updateButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const stationId = this.getAttribute('data-station-id');
+          updateCurrentStation(stationId);
+        });
+      });
+
+      // Manual update button
+      const manualUpdateBtn = document.getElementById('manualUpdateBtn');
+      manualUpdateBtn.addEventListener('click', function() {
+        const stationId = document.getElementById('manualStationSelect').value;
+        if (stationId) {
+          updateCurrentStation(stationId);
+        }
+      });
+
+      // Function to update current station via API
+      function updateCurrentStation(stationId) {
+        fetch('/stations/update-station', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ stationId })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Reload the page to show updated information
+            location.reload();
+            
+            // Show destination alert if reached
+            if (data.destinationReached) {
+              document.getElementById('destinationAlert').classList.remove('d-none');
+              document.getElementById('destinationAlert').classList.add('d-block');
+              // Alert the user
+              alert('You have reached your destination!');
+            }
+          }
+        })
+        .catch(error => {
+          console.error('Error updating station:', error);
+          alert('Failed to update your current station. Please try again.');
+        });
+      }
+    });
+  </script>
+</body>
+</html> 

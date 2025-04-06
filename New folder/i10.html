@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Table</title>
+    <style>
+        table {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-collapse: collapse;
+            margin: 20px auto;
+            text-align: center;
+        }
+        th, td {
+            border: 2px solid blue;
+            padding: 10px;
+            height: 50px;
+        }
+        th {
+            background-color: darkgray;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(2) {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Row 1, Col 1</td>
+                <td>Row 1, Col 2</td>
+                <td>Row 1, Col 3</td>
+            </tr>
+            <tr>
+                <td>Row 2, Col 1</td>
+                <td>Row 2, Col 2</td>
+                <td>Row 2, Col 3</td>
+            </tr>
+            <tr>
+                <td>Row 3, Col 1</td>
+                <td>Row 3, Col 2</td>
+                <td>Row 3, Col 3</td>
+            </tr>
+            <tr>
+                <td>Row 4, Col 1</td>
+                <td>Row 4, Col 2</td>
+                <td>Row 4, Col 3</td>
+            </tr>
+            <tr>
+                <td>Row 5, Col 1</td>
+                <td>Row 5, Col 2</td>
+                <td>Row 5, Col 3</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

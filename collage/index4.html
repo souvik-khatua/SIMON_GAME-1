@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Compatibility Example</title>
+
+    <style>
+        /* Basic styling for HTML5 elements */
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        section {
+            margin: 20px 0;
+        }
+        article {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+        <!-- Fallback for older versions of IE that don't support HTML5 elements -->
+        <script>
+            document.createElement("nav");
+            document.createElement("section");
+            document.createElement("article");
+            document.createElement("aside");
+            document.createElement("footer");
+        </script>
+        <style>
+            nav, section, article, aside, footer {
+                display: block;
+            }
+        </style>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- Navigation section -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <!-- Main content using HTML5 structure -->
+    <section>
+        <h1>Welcome to My Website</h1>
+        <p>This page demonstrates the usage of HTML5 structural elements.</p>
+
+        <article>
+            <h2>Article Title</h2>
+            <p>This is an article inside a section, providing structured content.</p>
+        </article>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My Website</p>
+    </footer>
+
+</body>
+</html>

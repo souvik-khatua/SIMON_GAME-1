@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nesting Tables</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid black;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        caption {
+            font-weight: bold;
+            padding: 5px;
+        }
+        .outer-table {
+            background-color: lightgray;
+        }
+        .nested-table {
+            width: 100%;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <table class="outer-table">
+        <caption>Main Table</caption>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td rowspan="2">
+                <table class="nested-table">
+                    <caption>Nested Table</caption>
+                    <tr>
+                        <td>Nested 1</td>
+                        <td>Nested 2</td>
+                    </tr>
+                    <tr>
+                        <td>Nested 3</td>
+                        <td>Nested 4</td>
+                    </tr>
+                </table>
+            </td>
+            <td>Data 3</td>
+        </tr>
+        <tr>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+    </table>
+</body>
+</html>

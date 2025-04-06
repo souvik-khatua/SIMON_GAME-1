@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+        }
+        /* Column Widths */
+        .col-1 {
+            width: 100px;
+        }
+        .col-2 {
+            width: 50%;
+        }
+        .col-3 {
+            width: auto; /* Takes remaining space */
+        }
+        /* Row Background Colors */
+        .row-1 {
+            background-color: blue;
+            color: white;
+        }
+        .row-2 {
+            background-color: yellow;
+        }
+        .row-3 {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr class="row-1">
+            <th class="col-1">Column 1</th>
+            <th colspan="2">Merged Header (Columns 2 & 3)</th>
+        </tr>
+        <tr class="row-2">
+            <td class="col-1">Row 2, Col 1</td>
+            <td class="col-2">Row 2, Col 2</td>
+            <td class="col-3">Row 2, Col 3</td>
+        </tr>
+        <tr class="row-3">
+            <td class="col-1">Row 3, Col 1</td>
+            <td class="col-2">Row 3, Col 2</td>
+            <td class="col-3">Row 3, Col 3</td>
+        </tr>
+    </table>
+</body>
+</html>

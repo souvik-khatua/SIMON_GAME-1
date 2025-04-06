@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table with Background Image</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid black;
+            background-image: url('https://source.unsplash.com/800x600/?texture'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            color: white; /* Ensures text readability */
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.6); /* Adds transparency for better text contrast */
+        }
+        caption {
+            font-weight: bold;
+            padding: 5px;
+            font-size: 1.2rem;
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption>Table with Background Image</caption>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+        </tr>
+        <tr>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>Consectetur adipiscing elit.</td>
+        </tr>
+        <tr>
+            <td>Vestibulum ante ipsum primis.</td>
+            <td>In faucibus orci luctus.</td>
+        </tr>
+        <tr>
+            <td>Aliquam erat volutpat.</td>
+            <td>Donec facilisis orci.</td>
+        </tr>
+    </table>
+</body>
+</html>

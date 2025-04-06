@@ -1,0 +1,63 @@
+/* Main Styles */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+}
+
+main {
+  flex: 1;
+}
+
+/* Navbar Styles */
+.navbar-brand {
+  font-weight: bold;
+}
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+/* Card Styles */
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 12px 20px;
+  font-weight: bold;
+}
+
+/* Station Tracking Styles */
+#journeyInfo {
+  border-left: 5px solid #0dcaf0;
+}
+
+#destinationAlert {
+  border-left: 5px solid #ffc107;
+}
+
+.update-station-btn {
+  white-space: nowrap;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+/* Table styles */
+.table {
+  margin-bottom: 0;
+}
+
+/* Footer Styles */
+footer {
+  margin-top: auto;
+} 
